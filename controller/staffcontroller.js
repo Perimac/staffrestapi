@@ -1,7 +1,6 @@
 const staffmodel = require('../model/staffmodel');
 
 function createStaff(req, res) {
-    console.log(req.body);
     staffmodel.create(req.body)
    .then(function(data){
        res.status(200).json({success:true, message:'Staff created',data:data});
@@ -30,4 +29,25 @@ async function getStaffById(req, res) {
     }
 }
 
-module.exports = {createStaff, getStaff, getStaffById};
+//Getting All Staff on PayRoll
+async function getPayRollStaff(req, res){
+    try {
+        const id = req.params.id;
+        const {isOnPayroll} = req.query.isOnPayroll;
+        const data = await staffmodel.findById(id,{isOnPayroll:isOnPayroll})
+        res.status(201).json({success:true,message:'staff found',data:data});
+    } catch (error) {
+        res.status(401).json({success:false,message:'staff does not exit'});
+    }
+}
+
+async function updateStaff(req, res) {
+    try {
+        
+    } catch (error) {
+        
+    }
+}
+
+
+module.exports = {createStaff, getStaff, getStaffById,getPayRollStaff};
