@@ -26,7 +26,7 @@ async function getStaffById(req, res) {
         const data = await staffmodel.findById(id);
         res.status(201).json({success:true,message:'staff found',data:data});
     } catch (error) {
-        res.status(401).json({success:false,message:'staff does not exit',data:error.message});
+        res.status(401).json({success:false,message:'staff does not exit'});
     }
 }
 
