@@ -14,9 +14,9 @@ server.get('/staff/:id',staffController.getStaffById);
 server.get('/staff/:id',staffController.getStaffById);
 
 server.listen(port,function(){
-    mongoose.connect(process.env.DB_URL)
+    mongoose.connect(process.env.ATLAS_URL)
     .then(function(){
         console.log('GTL DB Connected');
-        
+
     }).catch(err => console.error(err.message));
 });
