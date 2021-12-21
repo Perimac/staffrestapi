@@ -8,14 +8,15 @@ const server = express();
 
 server.use(express.json());
 
+server.post('/staff',staffController.createStaff);
+server.get('/staffs',staffController.getStaff);
+server.get('/staff/:id',staffController.getStaffById);
+server.get('/staff/:id',staffController.getStaffById);
+
 server.listen(port,function(){
     mongoose.connect(process.env.DB_URL)
     .then(function(){
         console.log('GTL DB Connected');
-        server.post('/staff',staffController.createStaff);
-        server.get('/staffs',staffController.getStaff);
-        server.get('/staff/:id',staffController.getStaffById);
-        server.get('/staff/:id',staffController.getStaffById);
         
     }).catch(err => console.error(err.message));
 });
