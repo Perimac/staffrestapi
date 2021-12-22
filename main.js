@@ -3,20 +3,21 @@ const express = require('express');
 const mongoose = require('mongoose');
 
 const staffController = require('./controller/staffcontroller');
-const port = process.env.PORT || 4000;
+// const port = process.env.PORT || 4000;
+const localport = 4000;
 const server = express();
 
 server.use(express.json());
 
 server.post('/staff',staffController.createStaff);
-server.get('/staffs',staffController.getStaff);
+server.get('/allstaff',staffController.getStaff);
 server.get('/staff/:id',staffController.getStaffById);
-server.get('/staff/:id',staffController.getStaffById);
+server.get('/payrol',staffController.getStaffByPayRoll);
+server.put('/ustaff/:id',staffController.updateStaff);
 
-server.listen(port,function(){
+server.listen(localport,function(){
     mongoose.connect(process.env.ATLAS_URL)
     .then(function(){
-        console.log('GTL DB Connected');
-
+        console.log('ATLAS Connected');
     }).catch(err => console.error(err.message));
 });
